@@ -1,0 +1,71 @@
+// Typography > Icons
+// -------------------------
+
+// Strategy Icons
+// Follows the format .fa-{{strategy-name}}. Requires use of .fa class (font-awesome)
+
+@each $strategy-name, $strategy-icon in $instruction-strategy-icons {
+    .fa-#{$strategy-name} {
+        &::before {
+            content:$strategy-icon;
+        }
+    }
+}
+
+@each $domain-name, $domain-icon in $instruction-domain-icons {
+    .fa-#{$domain-name} {
+        &::before {
+            content: $domain-icon;
+        }
+    }
+}
+
+@each $strategy-name, $strategy-icon in $instruction-strategy-icons {
+    .instruction-strategy {
+        &.#{$strategy-name} {
+            &::before {
+				@if($strategy-name == 'student-collaboration') {
+					@include efa-brand-icon();
+				} @else {
+					@include efa-icon();
+				}
+                content:$strategy-icon;
+            }
+        }
+    }
+}
+
+// Document Icons
+// Follows the format .fa-{{document-name}}. Requires use of .fa class (font-awesome)
+
+
+@each $document-type-name, $document-type-icon in $document-type-icons {
+    .fa-#{$document-type-name} {
+        &::before {
+            content:$document-type-icon;
+        }
+    }
+}
+
+// Icon Colors
+// Can be used to color icons. Follow the format class="fa fa-{{icon}} {{color}}"
+
+.fa {
+    @each $name, $color in $foundation-palette {
+        &.#{$name} {
+            color:$color;
+        }
+	}
+	&.fa-angle-down {
+		font-weight:400;
+	}
+	&.fa-angle-up {
+		font-weight:400;
+	}
+	&.fa-angle-left {
+		font-weight:400;
+	}
+	&.fa-angle-right {
+		font-weight:400;
+	}
+}

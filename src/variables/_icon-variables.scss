@@ -1,0 +1,76 @@
+﻿// Variables > Icon Variables
+// -------------------------
+
+$document-type-icons: (
+    document-type-1: fa-content($fa-var-file),
+    document-type-2: fa-content($fa-var-file-image),
+    document-type-3: fa-content($fa-var-file-pdf),
+    document-type-4: fa-content($fa-var-file-word),
+    document-type-5: fa-content($fa-var-file-alt),
+    document-type-6: fa-content($fa-var-file-excel)
+);
+
+$instruction-strategy-icons: (
+    // Build Background
+    demonstrations-and-experiences: fa-content($fa-var-film),
+    student-collaboration: fa-content($fa-var-slideshare), 
+    inquiry-and-research: fa-content($fa-var-search), 
+    
+    // // Clarify Input
+    supported-lesson-delivery: fa-content($fa-var-map),
+    focused-listening: fa-content($fa-var-headphones),
+    purposeful-reading: fa-content($fa-var-book),
+
+    // // Fortify Output
+    classroom-chatter: fa-content($fa-var-comment-dots),
+    student-writing: fa-content($fa-var-pencil), 
+    constructed-response: fa-content($fa-var-cubes),
+
+    // // Foster Interactions
+    academic-conversations: fa-content($fa-var-graduation-cap), 
+    practice-and-review: fa-content($fa-var-sync),
+    opinions-and-debates: fa-content($fa-var-gavel),
+
+    // // Develop Academic Language
+    weighted-words: fa-content($fa-var-anchor),
+    strong-sentences: fa-content($fa-var-link),
+    meaningful-messages: fa-content($fa-var-cogs),
+
+    // // Assess Understanding
+    quick-checks: fa-content($fa-var-check-circle),
+    varied-assessments: fa-content($fa-var-sliders-h),
+
+
+    // TODO: deprecate
+    written-and-quick-checks: fa-content($fa-var-check-circle),
+    read-and-research: fa-content($fa-var-search), // = inquiry-and-research
+    objective-driven-lessons: fa-content($fa-var-map), // = supported-lesson-delivery
+    visual-and-graphic-support: fa-content($fa-var-headphones), // = focused-listening
+    adapted-lesson-delivery: fa-content($fa-var-language),
+    vocabulary-building: fa-content($fa-var-link), // = strong-sentences
+    sentence-structure-and-grammar: fa-content($fa-var-cogs), // = meaningful-messages 
+    reading-comprehension: fa-content($fa-var-book), // = purposeful-reading
+    classify-and-question: fa-content($fa-var-question),
+    review: fa-content($fa-var-sync), // = practice-and-review
+    signal-words: fa-content($fa-var-balance-scale) // = weighted-words
+);
+
+$instruction-resource-icons: (
+    student-graphic-organizers: fa-content($fa-var-download),
+    student-reference-sheet: fa-content($fa-var-download),
+    poster: fa-content($fa-var-download),
+    rubric: fa-content($fa-var-download),
+    educator-guide: fa-content($fa-var-download),
+    online-tool: fa-content($fa-var-external-link-alt),
+    lesson-plan: fa-content($fa-var-external-link-alt),
+    blog-post: fa-content($fa-var-external-link-alt),
+    video: fa-content($fa-var-external-link-alt),
+    research: fa-content($fa-var-external-link-alt)
+);
+
+$instruction-domain-icons: (
+    speaking: fa-content($fa-var-bullhorn),
+    listening: fa-content($fa-var-headphones),
+    reading: fa-content($fa-var-book),
+    writing: fa-content($fa-var-pencil)
+);

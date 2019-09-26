@@ -1,0 +1,105 @@
+﻿// Variables > Color Variables
+// -------------------------
+
+// Main Color Palette
+
+$primary-color						    : #1f51a1;
+$secondary-color					    : #e7e7e7;
+$success-color						    : #8ac91e;
+$warning-color						    : #f08a24;
+$alert-color						    : #f04124;
+
+$light-primary                          :lighten($primary-color, 20%);
+
+// Grayscale Palette
+$white                                  : #ffffff;
+$mild-gray                              : #fafafa;
+$whitesmoke-gray                        : #f5f5f5;
+$whitesmokier-gray                      : #eaeaea;
+$light-gray                             : $secondary-color;
+$dark-gray                              : #dfdfdf;
+$medium-gray                            : #cccccc;
+$darker-gray                            : #8a8a8a;
+$silver-gray                            : #888888;
+$footer-gray                            : #5a5e63;
+$charcoal-gray                          : #474747;
+$black                                  : #222222;
+
+
+
+// Legacy Variables (do not use)
+$gray                                   : $medium-gray;
+$silver                                 : $silver-gray;
+$whitesmoke                             : $whitesmoke-gray;
+$whitesmokier                           : $whitesmokier-gray;
+$charcoal                               : $charcoal-gray;
+
+// Secondary Color Palette
+
+$light-green-color					    : #e4f2d0;
+$light-blue-color					    : #dfe8f2;
+$light-beige-color				        : #f8f6e8;
+
+$secondary-palette: (
+    light-green-color: $light-green-color,
+    light-blue-color: $light-blue-color,
+    light-beige-color: $light-beige-color
+);
+
+// Gold Palette
+
+$light-gold                             : #f8f6e8;
+$medium-gold                            : #f4f1d9;
+$dark-gold			      			  	: #eae7ba;
+$darker-gold                            : #e3cf7a;
+
+$light-beige						    : $light-gold;
+$medium-beige                           : $medium-gold;
+$dark-beige							    : $dark-gold;
+$gold                                   : $darker-gold;
+
+$light-yellow                           : $light-beige;
+$medium-yellow                          : $medium-beige;
+$dark-yellow                            : $dark-beige;
+
+
+
+// Strategies Palette
+
+$practice-brown-color                   : #706D3C;
+$practice-orange-color                  : #E65527;
+$practice-blue-color                    : #37A5B3;
+$practice-yellow-color                  : #D5BC3A;
+$practice-purple-color                  : #716F84;
+$practice-green-color                   : #5EA07F;
+$trending-red-color											: #F02450;
+
+// Support Legacy Slugs
+
+$grayscale-palette: (
+    white: $white,
+    light-gray: $light-gray,
+    medium-gray: $medium-gray,
+    dark-gray: $dark-gray,
+    black: $black
+);
+
+$strategies-palette: (
+    // NEW Slugs
+    build-background: $practice-brown-color,
+    clarify-input: $practice-orange-color,
+    fortify-output: $practice-blue-color,
+    foster-interactions: $practice-purple-color,
+    develop-academic-language: $practice-yellow-color,
+    assess-language-and-learning: $practice-green-color,
+
+    // TO DEPRECATE
+    deliver-comprehensible-input: $practice-orange-color,
+    foster-interaction-and-output: $practice-blue-color,
+    foster-output: $practice-blue-color,
+    develop-academic-language-and-vocabulary: $practice-yellow-color,
+    teach-higher-order-thinking: $practice-purple-color, // TODO: remove
+    review-and-assess-understanding: $practice-green-color,
+    review-and-assess: $practice-green-color,
+    assess-learning: $practice-green-color
+);

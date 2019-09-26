@@ -1,0 +1,3 @@
+@function fa-content($fa-var) {
+	@return unquote('"#{ $fa-var }"');
+}

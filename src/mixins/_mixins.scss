@@ -1,0 +1,227 @@
+//////
+//  Typography Mixins
+//////
+
+@mixin not-a-link($color: $body-font-color) {
+    color: $color;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+        color: inherit;
+    }
+}
+
+@mixin list-reset {
+	list-style:none;
+	margin:0;
+}
+
+@mixin ellipsis {
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+
+@mixin bold-font {
+	font-weight:normal;
+	font-family:$bold-font-family;
+}
+
+@mixin semibold-font {
+	font-weight:normal;
+	font-family:$semibold-font-family;
+}
+
+@mixin normal-font {
+	font-weight:normal;
+	font-family:$normal-font-family;
+}
+
+@mixin efa-icon() {
+	display: inline-block;
+	font: normal normal 900 #{$fa-font-size-base}/1 "Font Awesome 5 Pro"; // shortening font declaration
+	font-size: inherit; // can't have font-size inherit on line above, so need to override
+	text-rendering: auto; // optimizelegibility throws things off #1094
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	transform: translate(0, 0); // ensures no half-pixel rendering in firefox
+}
+
+@mixin efa-brand-icon() {
+	display: inline-block;
+	font: normal normal 400 #{$fa-font-size-base}/1 "Font Awesome 5 Brands"; // shortening font declaration
+	font-size: inherit; // can't have font-size inherit on line above, so need to override
+	text-rendering: auto; // optimizelegibility throws things off #1094
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	transform: translate(0, 0); // ensures no half-pixel rendering in firefox
+}
+
+//////
+//  Motion Mixins
+//////
+
+@mixin transition($transition-property, $transition-time: 200ms, $transition-method: ease-in-out) {
+   transition: $transition-property $transition-time $transition-method;
+}
+
+@mixin transform($transforms) {
+    transform: $transforms;
+}
+
+//////
+//  Presentational Mixins
+//////
+
+@mixin box-shadow($bs-h,$bs-v,$bs-b,$bs-c,$bs-a,$bs-i:"") {
+	box-shadow: $bs-h $bs-v $bs-b rgba($bs-c,$bs-a) unquote($bs-i);
+}
+
+//////
+//  Background Line
+//  Use like <h2><span>Hello</span></h2>
+//////
+
+@mixin header-background-line ($bg-color, $line-color: $medium-gray) {
+    position: relative;
+    z-index: 0;
+
+    & > span {
+        display: inline-block;
+        background-color: $bg-color;
+        padding-right: rem-calc(16);
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        z-index: -1;
+        width: 100%;
+        height: 1px;
+        background-color: $line-color;
+    }
+}
+
+
+//////
+//  Element Mixins
+//////
+
+@mixin grabby-hands ($pos-top: 0,$pos-left: 0) {
+    position: relative;
+
+    &::before {
+        content: ':::::';
+        color: $silver-gray;
+        position: absolute;
+        font-size: rem-calc(15);
+        transform: rotate(90deg);
+        top: $pos-top;
+        left: $pos-left;
+        @include bold-font;
+
+        &:hover {
+            cursor: move;
+        }
+    }
+}
+
+@mixin tail($tail-size, $tail-direction, $tail-bg, $tail-border-color) {
+    // TODO: directionalize this
+    &::before, &::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        display: block;
+        width: 0px;
+        height: 0px;
+        border-left: $tail-size solid transparent;
+        border-right: $tail-size solid transparent;
+        margin-left: -($tail-size);
+    }
+    &::before, &::after {
+        @if $tail-direction == "top" {
+            top: -($tail-size);
+            bottom: auto;
+            border-top: 0;
+            border-bottom: $tail-size solid $tail-bg;
+        }
+        @if $tail-direction == "bottom" {
+            bottom: -($tail-size);
+            top: auto;
+            border-bottom: 0;
+            border-top: $tail-size solid $tail-bg;
+        }
+    }
+    &::before {
+         @if $tail-direction == "top" {
+            top: -($tail-size + 1);
+            border-bottom-color: $tail-border-color;
+        }
+        @if $tail-direction == "bottom" {
+            bottom: -($tail-size + 1);
+            border-top-color: $tail-border-color;        }
+    }
+}
+
+@mixin action-sheet-base($base-width: 320px) {
+    position: fixed;
+    z-index: 10;
+    background: $white;
+    border: 1px solid $medium-gray;
+    width: $base-width;
+    border-radius: $global-radius;
+    @include tail(10px,top,$white,$medium-gray);
+}
+
+@mixin border-with-space($border-side, $border-spacing, $border-color:$gray) {
+    border-#{$border-side}: 1px solid $border-color;
+    padding-#{$border-side}: $border-spacing;
+    margin-#{$border-side}: $border-spacing;
+}
+
+//////
+//  Scrolling Shadows
+// https://codepen.io/laustdeleuran/pen/DBaAu
+//////
+
+@mixin scrolling-shadows($background-color: rgb(255, 255, 255), $shadow-intensity: 0.2, $shadow-color: rgb(0,0,0), $cover-size: 40px, $shadow-size: 14px) {
+
+	background:
+		// Shadow covers 
+		linear-gradient($background-color 30%, rgba($background-color,0)),
+		linear-gradient(rgba($background-color,0), $background-color 70%) 0 100%,
+
+		// Shadows 
+		radial-gradient(50% 0, farthest-side, rgba($shadow-color,$shadow-intensity), rgba($shadow-color,0)),
+		radial-gradient(50% 100%,farthest-side, rgba($shadow-color,$shadow-intensity), rgba($shadow-color,0)) 0 100%;
+	background:
+		// Shadow covers 
+		linear-gradient($background-color 30%, rgba($background-color,0)),
+		linear-gradient(rgba($background-color,0), $background-color 70%) 0 100%,
+
+		// Shadows 
+		radial-gradient(farthest-side at 50% 0, rgba($shadow-color,$shadow-intensity), rgba($shadow-color,0)),
+		radial-gradient(farthest-side at 50% 100%, rgba($shadow-color,$shadow-intensity), rgba($shadow-color,0)) 0 100%;
+	background-repeat: no-repeat;
+	background-color: $background-color;
+	background-size: 100% $cover-size, 100% $cover-size, 100% $shadow-size, 100% $shadow-size;
+
+	// Opera doesn't support this in the shorthand 
+	background-attachment: local, local, scroll, scroll;
+}
+
+//////
+//  Helper Mixins
+//////
+
+@mixin absolute-cover {
+	position:absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+}

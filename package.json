@@ -1,0 +1,22 @@
+{
+  "name": "@ellevation/global-styles",
+  "version": "1.0.0",
+  "description": "A repository of global styles to be shared across Web and other projects",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@fortawesome/fontawesome-pro": "^5.9.0",
+    "copy-webpack-plugin": "^5.0.4",
+    "foundation-sites": "^6.5.3",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.38.0",
+    "webpack-cli": "^3.3.6"
+  }
+}

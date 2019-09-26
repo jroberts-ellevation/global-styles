@@ -1,0 +1,65 @@
+﻿// Typography > Typography
+// -------------------------
+
+strong {
+    @include bold-font;
+}
+
+.truncate {
+    @include ellipsis;
+
+    &.truncate-block {
+        display: block;
+    }
+}
+
+.responsive-font-size {
+    @include transition(font-size);
+}
+
+.subtle-link {
+    @include not-a-link;
+}
+
+.has-tip {
+    &:not(.fa) {
+        @include bold-font;
+    }
+
+    border-bottom: 1px dotted $medium-gray;
+    cursor: help;
+
+    &.has-tip-normal {
+        @include normal-font;
+    }
+
+    &:focus, &:hover {
+        border-bottom-color: $black;
+    }
+}
+
+dl {
+    &.definition-list {
+        dt {
+            @include bold-font;
+            margin-bottom: 0;
+
+            &:not(:first-child) {
+                margin-top: 0.5em;
+            }
+        }
+    }
+}
+
+.monospace {
+    font-family: monospace, sans-serif;
+}
+
+.is--warning-text {
+    flex: 1;
+
+    p {
+        color: $alert-color;
+        font-size: rem-calc(12);
+    }
+}

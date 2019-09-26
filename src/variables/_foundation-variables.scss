@@ -1,0 +1,219 @@
+﻿// Variables > Foundation Variables
+// -------------------------
+
+// 1. Global
+// ---------
+
+$global-width                       : rem-calc(1200);
+$foundation-palette: (
+  info: $primary-color,
+  primary: $primary-color,
+  secondary: $secondary-color,
+  success: $success-color,
+  warning: $warning-color,
+  alert: $alert-color,
+  error: $alert-color
+);
+$grid-row-width                     : $global-width;
+// $body-background                    : $light-yellow;
+$body-background                    : $white;
+$body-font-color                    : $black;
+$body-font-family                   : "ProximaNova-Regular", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$bold-font-family                   : "ProximaNova-Semibold", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$global-weight-bold                 : normal;
+$global-radius                      : rem-calc(4);
+// $global-flexbox                     : true;
+
+// 2. Breakpoints
+// --------------
+
+$breakpoint-classes: (small medium large xlarge xxlarge);
+
+// 4. Base Typography
+// ------------------
+
+$header-font-family: $bold-font-family;
+$header-sizes: (
+  small: (
+    'h1': 24,
+    'h2': 20,
+    'h3': 19,
+    'h4': 18,
+    'h5': 17,
+    'h6': 16,
+  ),
+  medium: (
+    'h1': 32,
+    'h2': 28,
+    'h3': 24,
+    'h4': 20,
+    'h5': 18,
+    'h6': 16,
+  ),
+);
+$header-small-font-color: $silver-gray;
+
+// 7. Accordion
+// ------------
+
+$accordion-background: $secondary-color;
+$accordion-item-color: $body-font-color;
+$accordion-plusminus: false;
+$accordion-item-background-hover: smart-scale($secondary-color, 14%);
+$accordion-item-padding: 1rem;
+$accordion-content-border: 1px solid $medium-gray;
+
+// 9. Badge
+// --------
+
+// $badge-background: $primary-color;
+// $badge-color: foreground($badge-background);
+$badge-padding: rem-calc(2 4);
+$badge-minwidth: rem-calc(20);
+$badge-font-size: rem-calc(12);
+
+// 10. Breadcrumbs
+// ---------------
+
+$breadcrumbs-margin: rem-calc(16 0);
+$breadcrumbs-item-font-size: rem-calc(13);
+$breadcrumbs-item-slash: true;
+
+// 11. Button
+// ----------
+
+$button-padding: 0.75em 1em;
+$button-sizes: (
+  tiny: 0.6rem,
+  small: 0.75rem,
+  default: 0.875rem,
+  large: 1.25rem,
+);
+$button-opacity-disabled: 0.5;
+
+// 12. Button Group
+// ----------------
+
+$buttongroup-margin: 1rem;
+$buttongroup-spacing: 0;
+$buttongroup-child-selector: '.button';
+$buttongroup-expand-max: 6;
+
+// 13. Callout
+// -----------
+
+$callout-background-fade: 75%;
+$callout-link-tint: 30%;
+
+// 14. Close Button
+// ----------------
+
+$closebutton-offset-vertical: 1rem;
+$closebutton-lineheight: rem-calc(25);
+$closebutton-color: rgba($charcoal,0.75);
+$closebutton-color-hover: $charcoal;
+
+// 16. Dropdown
+// ------------
+
+$dropdown-padding: 0;
+$dropdown-width: 320px;
+$dropdown-sizes: (
+  tiny: 160px,
+  small: 240px,
+  large: 480px,
+);
+
+// 17. Dropdown Menu
+// -----------------
+
+$dropdownmenu-arrows: false;
+$dropdownmenu-min-width: 300px;
+$dropdownmenu-border: 1px solid $medium-gray;
+
+// 19. Forms
+// ---------
+
+$fieldset-border: none;
+$fieldset-padding: 0;
+$fieldset-margin: rem-calc(0 0 16);
+$form-spacing: rem-calc(16);
+$input-font-size: rem-calc(14);
+$input-border-focus: 1px solid $darker-gray;
+$input-shadow-focus: 0 0 5px $medium-gray;
+$select-triangle-color: $medium-gray;
+
+
+// 20. Label
+// ---------
+
+$label-background: $primary-color;
+$label-color: foreground($label-background);
+$label-font-size: rem-calc(12);
+$label-padding: rem-calc(2 4);
+
+// 22. Menu
+// --------
+
+$menu-item-padding: 0.5rem 1rem;
+$menu-margin-nested: 0;
+
+// 23. Off-canvas
+// --------------
+
+$offcanvas-background: $medium-yellow;
+$maincontent-shadow: 0;
+
+// 27. Reveal
+// ----------
+
+$reveal-width: 640px;
+$reveal-offset: rem-calc(124); // header is 108+16
+$reveal-padding: 0;
+$reveal-border: 0;
+
+
+// 30. Table
+// ---------
+
+$table-background: $white;
+$table-color-scale: 6%;
+$table-border: 1px solid $light-gray;
+$table-padding: rem-calc(8);
+$table-hover-scale: 3%;
+$table-row-hover: darken($table-background, $table-hover-scale);
+$table-row-stripe-hover: darken($table-background, $table-color-scale + $table-hover-scale);
+$table-striped-background: smart-scale($table-background, $table-color-scale);
+$table-stripe: false;
+$table-head-background: smart-scale($table-background, $table-color-scale / 2);
+$table-foot-background: smart-scale($table-background, $table-color-scale);
+$table-head-font-color: $body-font-color;
+$show-header-for-stacked: false;
+
+// 31. Tabs
+// --------
+
+$tab-background: transparent;
+$tab-background-active: $white;
+$tab-border: $medium-gray;
+$tab-item-color: foreground($tab-background, $body-font-color);
+$tab-item-background-hover: transparent;
+$tab-item-padding: rem-calc(16 12);
+$tab-content-border: $medium-gray;
+
+
+// 34. Tooltip
+// -----------
+
+$tooltip-background-color: rgba($black,0.9);
+$tooltip-font-size: rem-calc(14);
+
+// 36. Top Bar
+// -----------
+
+$topbar-padding: 0;
+$topbar-background: $primary-color;
+$topbar-submenu-background: $white;
+$topbar-title-spacing: 1rem;
+$topbar-input-width: 200px;
+$topbar-unstack-breakpoint: medium;

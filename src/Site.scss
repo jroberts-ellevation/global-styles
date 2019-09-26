@@ -1,0 +1,35 @@
+// Things to declare upfront
+
+$pn-font-path: '/Content/Fonts';
+$fa-font-path: '/Content/font-awesome';
+
+// Required utils
+@import '../src/foundation/scss/util/util';
+@import '../src/font-awesome/fontawesome-pro/scss/variables';
+
+@import 'variables/variables';
+
+// Custom Foundation Import governed by partial
+@import '../src/foundation/scss/foundation';
+@include foundation-everything($flex:true);
+
+// Font Awesome
+@import '../src/font-awesome/fontawesome-pro/scss/fontawesome';
+@import '../src/font-awesome/fontawesome-pro/scss/brands.scss';
+@import '../src/font-awesome/fontawesome-pro/scss/solid.scss';
+@import '../src/font-awesome/fontawesome-pro/scss/light.scss';
+@import '../src/font-awesome/fontawesome-pro/scss/regular.scss';
+@import '../src/font-awesome/fontawesome-pro/scss/v4-shims.scss';
+
+
+// Custom Ellevation Mixins
+@import 'ellevation-mixins';
+
+// Typography
+@import 'ellevation-typography';
+
+// Print
+@import 'ellevation-print';
+
+//Util Functions
+@import 'ellevation-functions';

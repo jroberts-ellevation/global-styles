@@ -1,0 +1,29 @@
+// Typography > Fonts
+// -------------------------
+
+@font-face {
+  font-family: 'ProximaNova-Regular';
+  src:	url('#{$pn-font-path}/ProximaNova-Regular.ttf') format('truetype'),
+			url('#{$pn-font-path}/ProximaNova-Regular.woff') format('woff'),
+			url('#{$pn-font-path}/ProximaNova-Regular.svg') format('svg');
+  font-weight: normal;
+  font-style: normal; 
+}
+
+@font-face {
+  font-family: 'ProximaNova-Semibold';
+  src:	url('#{$pn-font-path}/ProximaNova-Semibold.ttf') format('truetype'),
+			url('#{$pn-font-path}/ProximaNova-Semibold.woff') format('woff'),
+			url('#{$pn-font-path}/ProximaNova-Semibold.svg') format('svg');
+  font-weight: normal;
+  font-style: normal; 
+}
+
+@font-face {
+  font-family: 'ProximaNova-Bold';
+  src:	url('#{$pn-font-path}/ProximaNova-Bold.ttf') format('truetype'),
+			url('#{$pn-font-path}/ProximaNova-Bold.woff') format('woff'),
+			url('#{$pn-font-path}/ProximaNova-Bold.svg') format('svg');
+  font-weight: normal;
+  font-style: normal; 
+}
