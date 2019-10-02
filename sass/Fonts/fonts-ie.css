@@ -1,0 +1,15 @@
+/* Fonts
+	See http://www.fontspring.com/blog/the-new-bulletproof-font-face-syntax for
+	IE8 hack
+============================================================================= */
+@font-face {
+  font-family: 'ProximaNova-Regular';
+  src:	url('/Content/Fonts/ProximaNova-Regular.eot');		
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'ProximaNova-Semibold';
+  src:	url('/Content/Fonts/ProximaNova-Semibold.eot');
+  font-weight: normal;
+  font-style: normal; }

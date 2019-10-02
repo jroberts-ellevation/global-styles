@@ -1,0 +1,19 @@
+/* Fonts
+============================================================================= */
+@font-face {
+  font-family: 'ProximaNova-Regular';
+  src:	url('/Content/Fonts/ProximaNova-Regular.ttf') format('truetype'),
+			url('/Content/Fonts/ProximaNova-Regular.woff') format('woff'),
+			url('/Content/Fonts/ProximaNova-Regular.svg') format('svg');
+  font-weight: normal;
+  font-style: normal; 
+}
+
+@font-face {
+  font-family: 'ProximaNova-Semibold';
+  src:	url('/Content/Fonts/ProximaNova-Semibold.ttf') format('truetype'),
+			url('/Content/Fonts/ProximaNova-Semibold.woff') format('woff'),
+			url('/Content/Fonts/ProximaNova-Semibold.svg') format('svg');
+  font-weight: normal;
+  font-style: normal; 
+}
