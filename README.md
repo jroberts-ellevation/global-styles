@@ -17,3 +17,6 @@ In your project's root sass file:
 
 Publishing:
 Changes made to this repo must be versioned by incrementing the version in package.json. This way all consuming projects will receive the latest style changes.
+
+TODO
+- compatibility with web: assess assetts (what needs to come over to global-styles, what can stay)
