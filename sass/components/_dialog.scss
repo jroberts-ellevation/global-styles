@@ -1,0 +1,313 @@
+﻿// Components > Dialog
+// -------------------------
+
+
+$elevio-width: 480px; 
+
+$ell-dialog-spacing: rem-calc(12);
+
+$ell-dialog-position-top: 80px;
+$ell-dialog-static-offset: 128px;
+
+$ell-dialog-width-tiny: 320px;
+$ell-dialog-width-small: 400px;
+$ell-dialog-width-medium: 640px; // Default
+$ell-dialog-width-large: 728px;
+$ell-dialog-width-xlarge: 960px;
+$ell-dialog-width-xxlarge: 1024px;
+
+$ell-dialog-sizes: ( 
+    tiny: $ell-dialog-width-tiny, 
+    small: $ell-dialog-width-small, 
+    medium: $ell-dialog-width-medium, 
+    large: $ell-dialog-width-large, 
+    xlarge: $ell-dialog-width-xlarge, 
+    xxlarge: $ell-dialog-width-xxlarge 
+);
+
+.elevio-open {
+    ux-dialog-container {
+        &.active {
+            margin-right:$elevio-width;
+        }
+    }
+}
+
+ux-dialog-container,
+ux-dialog-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+ux-dialog-overlay {
+    opacity: 0;
+
+    &.active {
+        opacity: 1;
+        background-color: rgba($black,0.4);
+    }
+
+    &.dialog-overlay-clean {
+        background-color: transparent;
+    }
+}
+
+ux-dialog-container {
+    display: block;
+    opacity: 0;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    transition: opacity 0.2s linear, margin 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+
+    &.active {
+        opacity: 1;
+    }
+
+    & > div { // This is awful and hacky, but from UX-DIALOG...consider removing with testing
+        margin-top: $ell-dialog-position-top !important; // Hard Coding to 100 for now
+        & > div {
+            width: fit-content;
+            height: fit-content;
+            margin: auto;
+            display: block;
+        }
+    }
+}
+
+
+ux-dialog-container,
+ux-dialog-container > div,
+ux-dialog-container > div > div {
+    outline: 0;
+}
+
+.ell-dialog {
+    display: block;
+    box-shadow: 0 5px 15px rgba($black,0.5);
+    border-radius: $global-radius;
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    background: $white;
+    width: rem-calc(640);
+    overflow: hidden; // Necessary to get rounded corners. Keep an eye on this.
+    @each $ell-dialog-size-name, $ell-dialog-size-value in $ell-dialog-sizes {
+        &.#{$ell-dialog-size-name} {
+            width: $ell-dialog-size-value;
+        }
+    }
+
+    .ell-dialog-header {
+        display: block;
+        background-color: $whitesmoke-gray;
+        padding: rem-calc(12 16);
+        border-bottom: 1px solid $medium-gray;
+
+        .ell-dialog-title {
+            @include bold-font;
+        }
+
+        .ell-dialog-close {
+            float: right;
+            border: none;
+            display: block;
+            width: rem-calc(24);
+            height: rem-calc(24);
+            font-size: rem-calc(22);
+            line-height: rem-calc(24);
+            margin: 0;
+            padding: rem-calc(0 6);
+            cursor: pointer;
+            color: $silver-gray;
+            @include transition(color);
+
+            &:hover {
+                color: $body-font-color;
+            }
+        }
+
+        &.clean {
+            background-color: transparent;
+            border-bottom: none;
+        }
+    }
+    // Support for Tabs in Dialog Header
+    .ell-dialog-header-with-tabs {
+        padding: 0;
+
+        .tabs {
+            border-width: 0;
+        }
+
+        .ell-dialog-close {
+            margin-top: rem-calc(12);
+            margin-right: rem-calc(16);
+        }
+    }
+
+    .ell-dialog-body {
+        max-height: calc(100vh - (#{$ell-dialog-position-top} + #{$ell-dialog-static-offset}));
+        overflow-y: auto;
+        display: block;
+        padding: $global-padding;
+
+        .row {
+            &:not(.collapse) {
+                margin-left: rem-calc(-15);
+                margin-right: rem-calc(-15);
+            }
+        }
+
+        .grid-frame {
+            max-height: calc(100vh - (#{$ell-dialog-position-top} + #{$ell-dialog-static-offset}));
+        }
+
+        &.collapse {
+            padding: 0;
+        }
+
+        .dialog-container {
+            &.with-padding {
+                padding: $ell-dialog-spacing;
+            }
+
+            &.border-right {
+                border-right: 1px solid $medium-gray;
+            }
+
+            &.border-bottom {
+                border-bottom: 1px solid $medium-gray;
+            }
+
+            p {
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+            // Dialog Container Header is a title area within a dialog container
+            .dialog-container-header, .dialog-container-footer {
+                padding: $ell-dialog-spacing;
+
+                .button,
+                p {
+                    margin-bottom: 0;
+                }
+            }
+
+            .dialog-container-header-search {
+                .search-input-field {
+                    margin-bottom: 0;
+                }
+            }
+
+            .dialog-container-scrollable {
+                max-height: 60vh;
+                overflow-y: auto;
+            }
+        }
+        
+        .loading {
+            display: flex;
+            margin: 60px 0;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px;
+            color: rgb(223, 233, 243);
+        }
+    }
+
+    .ell-dialog-footer {
+        display: block;
+        background-color: $whitesmoke-gray;
+        padding: rem-calc(8 16);
+        border-top: 1px solid $medium-gray;
+        text-align: right;
+
+        .button {
+            margin-bottom: 0;
+        }
+
+        .link-button {
+            padding: rem-calc(8 16);
+        }
+        &.clean-footer {
+            background-color:transparent;
+            border-top:none;
+            padding-top:0;
+            padding-bottom:rem-calc(16);
+        }
+    }
+}
+
+.ux-dialog-open {
+    overflow: hidden;
+}
+
+.dialog-confirm {
+    .ell-dialog {
+        width: rem-calc(480);
+    }
+
+    .ell-dialog-body {
+        position: relative;
+
+        .ell-dialog-close {
+            position: absolute;
+            right: rem-calc(8);
+            border: none;
+            display: block;
+            width: rem-calc(24);
+            height: rem-calc(24);
+            font-size: rem-calc(22);
+            line-height: rem-calc(24);
+            margin: 0;
+            padding: rem-calc(0 6);
+            cursor: pointer;
+            color: $silver-gray;
+            @include transition(color);
+
+            &:hover {
+                color: $body-font-color;
+            }
+        }
+    }
+
+    .confirm-block {
+        display: flex;
+
+        .confirm-icon {
+            font-size: rem-calc(48);
+            margin-right: rem-calc(12);
+        }
+
+        .confirm-message {
+            display: flex;
+            flex-direction: column;
+
+            .confirm-title {
+                @include bold-font;
+                line-height: rem-calc(24);
+            }
+        }
+    }
+
+    .ell-dialog-footer {
+        display: flex;
+        padding: rem-calc(16 8);
+
+        .button {
+            flex: 1;
+            margin-right: rem-calc(8);
+            margin-left: rem-calc(8);
+        }
+    }
+}

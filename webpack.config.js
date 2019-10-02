@@ -1,31 +1,27 @@
 const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-	entry: './src/Site.scss',
+	entry: path.resolve(__dirname, './src/Site.scss'),
+	output: {
+		filename: 'Site.css'
+	},
 	module: {
 		rules: [
 			{
 				test: /\.scss$/,
 				use: [
-					{ loader: 'style-loader' },
+					{ loader: 'css-loader' },
+					{
+						loader: 'postcss-loader',
+						options: { plugins: () => [require('autoprefixer')({ browsers: ['last 2 versions', 'ie >= 9', 'Android >= 2.3'] })] }
+					},
 					{ loader: 'sass-loader' }
 				],
 			}
 		],
 	},
 	plugins: [
-		new CopyWebpackPlugin(
-			[
-				{
-					from: './node_modules/@fortawesome',
-					to: './src/font-awesome'
-				}, 
-				{
-					from: './node_modules/foundation',
-					to: './src/foundation'
-				}
-			]
-		)
+		new CleanWebpackPlugin()
 	]
 };

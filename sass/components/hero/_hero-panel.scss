@@ -1,0 +1,14 @@
+﻿// Components > Birdseye > Hero Panel
+// -------------------------
+
+.hero-panel {
+    padding:$global-padding;
+    margin-bottom:$global-margin;
+    background-color:$whitesmoke-gray;
+    border-radius:$global-radius;
+    
+    .hero-panel-title {
+        font-size:rem-calc(24);
+        margin:rem-calc(0 0 16);
+    }
+}

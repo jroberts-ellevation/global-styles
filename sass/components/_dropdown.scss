@@ -1,0 +1,28 @@
+﻿// Components > Dropdown Pane
+// -------------------------
+
+.dropdown-pane {
+    .menu {
+        & > li {
+            & > a {
+                color: $body-font-color;
+                @include transition(background-color);
+
+                &:hover {
+                    background-color: $secondary-color;
+                    color: $body-font-color;
+                }
+            }
+        }
+    }
+
+    &.small {
+        .menu {
+            & > li {
+                & > a {
+                    font-size: rem-calc(14);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,38 @@
+﻿// Components > SPA (Single Page App) > Submenu
+// -------------------------
+
+$spa-vertical-breakpoint: rem-calc(765);
+$spa-small-vertical-padding: rem-calc(12);
+$spa-large-vertical-padding: rem-calc(16);
+
+
+// Submenu is long strip across top
+.spa-submenu {
+    box-shadow: 0 0 8px rgba($black, 0.5);
+    position: relative;
+
+    &.spa-submenu-is--processing {
+        z-index: 2; // =2 so it can go over processing pane
+    }
+
+    .spa-submenu-area {
+        padding-top: $spa-small-vertical-padding;
+        padding-bottom: $spa-small-vertical-padding;
+
+        @media screen and ( min-height: $spa-vertical-breakpoint ) {
+            padding-top: $spa-large-vertical-padding;
+            padding-bottom: $spa-large-vertical-padding;
+        }
+
+        .breadcrumbs {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    }
+
+    .button,
+    .button-group,
+    select {
+        margin-bottom: 0;
+    }
+}

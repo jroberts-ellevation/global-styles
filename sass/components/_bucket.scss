@@ -1,0 +1,149 @@
+﻿// Buckets
+// -------------------------
+
+.bucket {
+    background-color: $white;
+    border: 1px solid $medium-gray;
+    margin: rem-calc(16 0);
+    border-radius: $global-radius;
+    display: block;
+
+    h3 {
+        font-size: rem-calc(24);
+    }
+
+    h4 {
+        font-size: rem-calc(20);
+    }
+
+    h5 {
+        font-size: rem-calc(18);
+    }
+
+    p, ul, li, dl {
+        font-size: rem-calc(14);
+    }
+
+    p,
+    & > dl,
+    & > ul,
+    & > .callout {
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    // Bucket Colouring
+    @each $name, $color in $foundation-palette {
+        &.#{$name} {
+            @if $name != secondary {
+                border-color: scale-color($color, $lightness: 66%);
+                color: scale-color($color, $lightness: -25%);
+                background: scale-color($color, $lightness: 90%);
+
+                .bucket-header {
+                    background-color: scale-color($color, $lightness: 80%);
+                }
+            }
+
+            @if $name == secondary {
+                border-color: $medium-gray;
+                background: $secondary-color;
+
+                .bucket-header {
+                    background-color: scale-color($secondary-color, $lightness: -25%);
+                }
+            }
+        }
+    }
+
+    &.beige {
+        background: $medium-yellow;
+        border-color: $dark-yellow;
+    }
+
+    &.dark-beige {
+        background: $dark-yellow;
+    }
+
+    &.collapse {
+        margin: 0;
+    }
+
+    &.clean-border {
+        border-width: 0;
+        border-radius: 0;
+
+        .bucket-header, .bucket-section, .bucket-footer {
+            border-radius: 0;
+        }
+    }
+
+    &.clean-spacing {
+        margin: 0;
+    }
+
+    &.bucket-gray {
+        background-color: $whitesmoke-gray;
+
+        .bucket-header {
+            background-color: $light-gray;
+        }
+    }
+}
+
+.bucket-header {
+    background-color: $whitesmoke-gray;
+    padding: $global-padding;
+    border-radius: $global-radius $global-radius 0 0;
+
+    & > *:last-child {
+        &:not(.row) {
+            margin: 0;
+        }
+    }
+
+    .button {
+        margin-bottom: 0;
+    }
+}
+
+.bucket-section {
+    padding: $global-padding;
+
+    & + .bucket-section {
+        border-top: 1px solid $medium-gray;
+    }
+
+    &:last-child {
+        border-radius: 0 0 $global-radius $global-radius;
+    }
+
+    &.bucket-section-shrink {
+        padding: rem-calc(12);
+    }
+
+    &.bucket-section-collapse {
+        padding: 0;
+    }
+
+	& > .row {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
+.bucket-footer {
+    padding: $global-padding;
+    background-color: $whitesmoke-gray;
+    border-radius: 0 0 $global-radius $global-radius;
+
+    .button {
+        margin-bottom: 0;
+    }
+}
+
+.bucket-subsection {
+    &.nested {
+        margin-left: rem-calc(48);
+    }
+}

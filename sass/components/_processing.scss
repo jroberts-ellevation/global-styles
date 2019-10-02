@@ -1,0 +1,51 @@
+﻿// Components > Processing
+// -------------------------
+
+.is-processing {
+    position:relative;
+    &::before {
+        content:"";
+        background:$white;
+        position:absolute;
+        top:0;
+        right:0;
+        bottom:0;
+        left:0;
+        z-index:1;
+    }
+    &::after {
+        @include efa-icon();
+		content: fa-content($fa-var-spinner);
+		animation: fa-spin 0.75s infinite linear;
+        width:rem-calc(80);
+        height:rem-calc(80);
+        z-index:2;
+        font-size:rem-calc(64);
+        line-height:rem-calc(80);
+        text-align:center;
+        margin:rem-calc(-40 0 0 -40);
+        position:absolute;
+        // top:50%;
+        top: rem-calc(100);
+        left:50%;
+        color:smart-scale($primary-color, 50%);
+    }
+}
+
+.reveal-body {
+    &.is-processing {
+        min-height:rem-calc(200);
+    }
+}
+
+.tabs-panel {
+    .is-processing {
+        min-height:rem-calc(200);
+        &::before {
+            top:-1px;
+            right:-1px;
+            bottom:-1px;
+            left:-1px;
+        }
+    }
+}

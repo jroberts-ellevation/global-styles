@@ -1,0 +1,267 @@
+﻿// Components > Action Sheet
+// -------------------------  
+
+$action-sheet-width: 320px;
+$action-sheet-tiny-width: 160px;
+$action-sheet-small-width: 240px;
+$action-sheet-medium-width: 400px;
+$action-sheet-large-width: 480px;
+$action-sheet-xlarge-width: 640px;
+$action-sheet-horizontal-spacing: 12px;
+
+$action-sheet-sizes: (
+    tiny: $action-sheet-tiny-width,   
+    small: $action-sheet-small-width,   
+    medium: $action-sheet-medium-width,   
+    large: $action-sheet-large-width,
+    xlarge: $action-sheet-xlarge-width
+);
+
+.legacy-popup-menu {
+    .action-sheet {
+        margin-left: ($action-sheet-width/2) *-1
+    }
+
+    @each $action-sheet-size-name, $action-sheet-size-value in $action-sheet-sizes {
+        &.#{$action-sheet-size-name} {
+            margin-left: ($action-sheet-size-value/2) * -1;
+        }
+    }
+}
+
+.action-sheet {
+    @include action-sheet-base();
+
+    &.with-dialog {
+        z-index: 9999;
+    }
+
+    &.with-header {
+        &::after {
+            border-bottom-color: $whitesmoke-gray
+        }
+    }
+    // Common li styling for all action sheets.
+    li {
+        a {
+            text-align: left;
+            font-size: rem-calc(14);
+            position: relative;
+
+            &:hover, &.active {
+                background: smart-scale($white,14%);
+            }
+
+            &.is-saved {
+                justify-content: space-between;
+
+                &::before {
+                    @include efa-icon();
+                    content: fa-content($fa-var-check);
+                    display: flex;
+                    margin-left: rem-calc(8);
+                    order: 2;
+                }
+            }
+        }
+    }
+    // Right aligned Action Sheet - move tail
+    &.right {
+        &::before, &::after {
+            right: rem-calc(24);
+            left: initial;
+        }
+    }
+    // Left aligned Action Sheet - move tail
+    &.left {
+        &::before, &::after {
+            left: rem-calc(24);
+        }
+    }
+    // Top aligned Action Sheet - rotate tail
+    &.top {
+        @include tail(10px,bottom,$white,$medium-gray);
+    }
+
+    @each $action-sheet-size-name, $action-sheet-size-value in $action-sheet-sizes {
+        &.#{$action-sheet-size-name} {
+            width: $action-sheet-size-value;
+
+            &.right {
+                margin-left: ($action-sheet-size-value) *-1;
+            }
+
+            &.left {
+                margin-left: 0;
+            }
+        }
+    }
+    // Customization of Action Sheet Menus (does this belong here?)
+    .menu {
+        & > li {
+            &.menu-text {
+                padding-left: rem-calc(12);
+                padding-right: rem-calc(12);
+                padding-bottom: rem-calc(4);
+            }
+
+            & > a {
+                padding-left: rem-calc(12);
+                padding-right: rem-calc(12);
+            }
+
+            &.active, &.is-active {
+                & > a {
+                    &:not(:hover) {
+                        background: none;
+                        color: $body-font-color;
+                    }
+
+                    &::after {
+                        @include efa-icon();
+                        content: fa-content($fa-var-check);
+                        margin-left: auto;
+                    }
+                }
+            }
+        }
+    }
+    // Optional Top Part of Action Sheet used to give directions
+    .action-sheet-header {
+        position: relative;
+        padding-top: rem-calc(8);
+        padding-bottom: rem-calc(8);
+        padding-left: $action-sheet-horizontal-spacing;
+        padding-right: $action-sheet-horizontal-spacing;
+        background-color: $whitesmoke-gray;
+        border-bottom: 1px solid $medium-gray;
+        border-top-left-radius: $global-radius;
+        border-top-right-radius: $global-radius;
+
+        .action-sheet-header-title {
+            font-size: rem-calc(15);
+            @include bold-font;
+
+            .edit-groups-link {
+                font-family: ProximaNova-Regular;
+                font-size: rem-calc(14);
+            }
+        }
+
+        .action-sheet-header-search {
+            margin-top: rem-calc(4);
+            display: block;
+        }
+
+        .search-input-field {
+            margin-bottom: 0;
+        }
+
+
+        h3 {
+            margin: 0;
+            font-size: rem-calc(16);
+        }
+
+        .action-sheet-header-legend {
+            position: absolute;
+            right: $action-sheet-horizontal-spacing;
+            top: rem-calc(8);
+            font-size: rem-calc(14);
+        }
+    }
+
+    .action-sheet-body {
+        &.with-padding {
+            padding: $action-sheet-horizontal-spacing;
+        }
+
+        &.border-left {
+            border-left: 1px solid $medium-gray;
+        }
+
+        &.border-right {
+            border-right: 1px solid $medium-gray;
+        }
+
+        .fieldset {
+            margin-top: rem-calc(8);
+        }
+
+        ul {
+            list-style: none;
+
+            li {
+                &.delete {
+                    a {
+                        color: $alert-color;
+                        transition-property: all;
+
+                        &:hover {
+                            background-color: $alert-color;
+                            color: $white;
+                        }
+                    }
+                }
+
+                .inactive:hover {
+                    background: #fff !important;
+                }
+            }
+        }
+
+        .action-sheet-body-title {
+            display: block;
+            padding: rem-calc(8 12);
+            border-bottom: 1px solid $medium-gray;
+
+            & > h6 {
+                line-height: rem-calc(32);
+                margin: 0;
+                font-size: rem-calc(14);
+            }
+        }
+
+        .action-sheet-body-search {
+            display: block;
+            padding: rem-calc(8 12);
+            border-bottom: 1px solid $medium-gray;
+
+            .search-input-field {
+                margin-bottom: 0;
+            }
+        }
+    }
+    // Optional Bottom Part of Action Sheet used to give directions
+    .action-sheet-footer {
+        border-top: 1px solid $medium-gray;
+
+        & > a {
+            &:not(.button) {
+                line-height: rem-calc(25);
+                color: $silver-gray;
+                padding-top: rem-calc(8);
+                padding-bottom: rem-calc(8);
+                padding-left: $action-sheet-horizontal-spacing;
+                padding-right: $action-sheet-horizontal-spacing;
+                display: block;
+            }
+        }
+    }
+
+    .is-scrollable {
+        max-height: rem-calc(240);
+        max-height: 25vh;
+        overflow-y: auto;
+
+        @include scrolling-shadows($white,0.25) &.is-scrollable-long {
+            max-height: rem-calc(640);
+            max-height: 50vh;
+        }
+    }
+    // Custom sizing for folder list (strategies)
+    ul.folder-list {
+        height: rem-calc(150);
+        overflow-y: auto;
+    }
+}

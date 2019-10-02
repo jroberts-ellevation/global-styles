@@ -1,9 +1,0 @@
-﻿// Layout > Student List > Print Styles
-// -------------------------
-
-@media print {
-    #BrandingContainer, // Top Bar
-    #NavigationContainer { // Blue Nav
-        display: none;
-    }
-}

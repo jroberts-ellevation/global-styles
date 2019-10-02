@@ -1,0 +1,110 @@
+﻿// Components > Pagination
+// -------------------------
+
+.pagination {
+    button, a {
+        &.current {
+            &:hover {
+                background: $primary-color;
+            }
+        }
+    } 
+}
+
+// These styles are used to accommodate the PagedList.MVC plugin we use which does not follow same CSS syntax that Foundation uses :jeremied:
+
+.paged-list-container {
+    .pagination {
+        li {
+            &.disabled {
+                padding:0;
+                & > a {
+                    color:$silver-gray;
+                    cursor:not-allowed;
+                    &:hover {
+                        background-color:transparent;
+                    }
+                }
+
+            }
+            &.active {
+                padding:0;
+                & > a {
+                    color:$white;
+                    background-color:$primary-color;
+                    cursor:default;
+                }
+            }
+        }
+    }
+}
+
+// Datatables Nonsense
+
+@mixin data-tables-link {
+    display:inline-block;
+    color: $primary-color;
+    font-size:rem-calc(14);
+    line-height:rem-calc(16);
+    padding:rem-calc(5 6);
+    border:1px solid $medium-gray;
+    margin-left:-1px;
+    min-width:rem-calc(24);
+    text-align:center;
+}
+
+.dataTables_info {    
+    font-size:rem-calc(14);
+    line-height:rem-calc(28);
+}
+
+.dataTables_paginate {
+    & > span.disabled, 
+    & > span.active,
+    & > span.page-navigation-link,
+    & > a {
+        @include data-tables-link;
+        &:first-child {
+            border-top-left-radius:$global-radius;
+            border-bottom-left-radius:$global-radius;
+        }
+        &:last-child {
+            border-top-right-radius:$global-radius;
+            border-bottom-right-radius:$global-radius;
+        }
+        &.disabled, 
+        &.ui-state-disabled,
+        &.paginate_button_disabled {
+            color:$silver-gray;
+            cursor:not-allowed !important; // DUJE HACK
+        }
+    }
+    & > span.active {
+        color:$body-font-color;
+        background-color:$medium-gray;
+    }
+    & > span.page-navigation-link{
+        cursor:pointer !important; // DUJE HACK
+    }
+     
+    & > span > a {
+        @include data-tables-link;
+        &.paginate_active,
+        &.ui-state-disabled {
+            color:$body-font-color;
+            background-color:$medium-gray;
+        }
+    }
+}
+
+// Schools Page
+
+.dataTables_wrapper {
+    @include clearfix;
+    .dataTables_info {
+        float:left;
+    }
+    .dataTables_paginate  {
+        float:right;
+    }
+}

@@ -1,0 +1,46 @@
+﻿// Components > Header Bar
+// -------------------------  
+
+.header-bar {
+    margin-bottom:rem-calc(16);
+    button, 
+    .button,
+    .button-group,
+    .breadcrumbs,
+    select,
+    .select2-container,
+    input[type="text"],
+    input[type="search"],
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin-top:0;
+        margin-bottom:0;
+    }
+    .column, 
+    .columns {
+        align-self: center;
+    }
+    &.header-bar-extra-space {
+        margin-bottom:rem-calc(32);
+    }
+    &.header-bar-shrink {
+        margin-bottom:rem-calc(8);
+    }
+    &.header-bar-collapse {
+        margin-bottom:0;
+    }
+    p {
+        font-size:rem-calc(15);
+    }
+}
+
+.bucket-header {
+    .header-bar {
+        margin-bottom:0;
+    }
+}

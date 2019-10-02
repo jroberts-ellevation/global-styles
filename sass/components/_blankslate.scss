@@ -1,0 +1,42 @@
+﻿// Components > Blankslate
+// -------------------------
+
+.blankslate {
+    position: relative;
+    padding: rem-calc(30);
+    text-align: center;
+    background-color: $light-gray;
+    border: 1px solid $medium-gray;
+    border-radius: $global-radius;
+    box-shadow: inset 0 0 10px rgba($black, 0.05);
+
+    &.blankslate-clean-background {
+        background: none;
+        border: 0;
+        box-shadow: none;
+    }
+
+    &.blankslate-collapsed {
+        padding:0;
+    }
+
+    &.blankslate-spacious {
+        padding: rem-calc(100 60 120);
+    }
+
+    & > .fa {
+        // color: $dark-gray;
+        & + .fa {
+            margin-left: rem-calc(10);
+        }
+    }
+    p {
+        font-size:rem-calc(14);
+        &:last-child {
+            margin-bottom:0;
+        }
+    }
+    & > *:last-child {
+        margin-bottom:0;
+    }
+}

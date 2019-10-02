@@ -1,0 +1,120 @@
+﻿// Components > Accordion
+// -------------------------
+
+.accordion {
+    // Basic Accordion Styles
+    .accordion-item {
+        &.is-active {
+            .accordion-content {
+                display: block;
+            }
+        }
+
+        .accordion-title {
+            font-size: rem-calc(16);
+            padding: rem-calc(8);
+				@include bold-font;
+				
+				input {
+					margin: 0;
+					vertical-align: middle;
+				}
+		  }
+
+		  .accordion-subtitle-text {
+			  color: $silver-gray;
+		  }
+		  
+		  .fa {
+			  font-weight: 100;
+		  }
+    }
+    // Detached accordion styles
+    &.accordion-gutters {
+        background: none;
+        border: none;
+
+        .accordion-item {
+            margin-bottom: rem-calc(16);
+            border: 1px solid $medium-gray;
+            border-radius: $global-radius;
+
+            .accordion-title {
+                background-color: $whitesmoke-gray;
+                border-top-right-radius: $global-radius;
+                border-top-left-radius: $global-radius;
+                border-bottom-width: 0;
+                cursor: pointer;
+            }
+
+            .accordion-content {
+                position: relative;
+                border-bottom-width: 0;
+                // For headless accordion
+                &:first-child {
+                    border-top-right-radius: $global-radius;
+                    border-top-left-radius: $global-radius;
+                }
+            }
+
+            &.is-active {
+                .accordion-title {
+                    background-color: $secondary-color;
+                }
+            }
+        }
+    }
+    // Add up/down arrow as visual affordance for open/closed state
+    &.with-arrow {
+        .accordion-item {
+            .accordion-title {
+                padding-right: rem-calc(40);
+
+                &::after {
+                    @include efa-icon();
+                    font-size: rem-calc(12);
+                    line-height: rem-calc(16);
+                    @include transition(transform);
+                    float: right;
+                    margin-right: rem-calc(-24);
+                    content: fa-content($fa-var-chevron-down);
+                }
+            }
+
+            &.is-active {
+                .accordion-title {
+                    &::after {
+                        @include transform(rotate(180deg));
+                    }
+                }
+            }
+        }
+    }
+
+    &.with-checkbox {
+        .accordion-item {
+            .accordion-title {
+                padding-left: rem-calc(10);
+            }
+
+            &.is-active {
+                .accordion-title {
+                    background-color: $whitesmoke-gray;
+                }
+            }
+        }
+    }
+}
+
+.accordion-content-actions {
+    margin-top:$accordion-item-padding;
+    margin-left:-$accordion-item-padding;
+    margin-right:-$accordion-item-padding;
+    margin-bottom:-$accordion-item-padding;
+    background-color:$accordion-background;
+    padding: $accordion-item-padding/2 $accordion-item-padding;
+    text-align:right;
+    .button {
+        margin-bottom:0;
+    }
+}

@@ -1,0 +1,199 @@
+﻿// Components > Tab
+// -------------------------
+
+.tabs {
+    background: $light-blue-color;
+
+    &:not(.tabs-contained) {
+        border-top-left-radius: $global-radius;
+
+        .tabs-title {
+            &:first-child {
+                & > a {
+                    border-top-left-radius: $global-radius;
+                }
+            }
+        }
+    }
+
+    .tabs-title {
+        & > a {
+            font-size: rem-calc(14);
+            border-right: 1px solid $medium-gray;
+            margin-bottom: -1px;
+
+            &:hover {
+                background-color: smart-scale($light-blue-color, 5%);
+            }
+
+            .badge {
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+        }
+
+        &.is-active {
+            & > a {
+                color: $body-font-color;
+                border-color: $medium-gray;
+                background: $white;
+
+                &:hover {
+                    background: $white;
+                }
+            }
+        }
+    }
+
+    &:not(.vertical) {
+        border-width: 1px 1px 0 1px;
+
+        &:not(.tabs-contained) {
+            border-top-right-radius: $global-radius;
+        }
+
+        .tabs-title {
+            &.is-active {
+                & > a {
+                    border-bottom-color: $white;
+                    margin-top: -1px;
+                    border-top: 3px solid $warning-color;
+                    padding-top: rem-calc(14);
+                }
+            }
+        }
+    }
+
+    &.vertical {
+        border-width: 1px 0 1px 1px;
+
+        &:not(.tabs-contained) {
+            border-bottom-left-radius: $global-radius;
+            margin-right: -1px;
+
+            .tabs-title {
+                &:last-child {
+                    & > a {
+                        border-bottom-left-radius: $global-radius;
+                    }
+                }
+            }
+        }
+
+        .tabs-title {
+            position: relative;
+
+            &.is-active {
+                & > a {
+                    border-right-color: $white;
+                    margin-right: 0;
+                    margin-left: -1px;
+                    border-left: 3px solid $warning-color;
+                    padding-left: rem-calc(14);
+                    border-top: 1px solid $medium-gray;
+                    border-bottom: 1px solid $medium-gray;
+                }
+            }
+
+            &:first-child {
+                &.is-active {
+                    & > a {
+                        border-top-width: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.tabs-content {
+    border: 1px solid $medium-gray;
+    background: $white;
+    border-bottom-right-radius: $global-radius;
+
+    &:not(.vertical) {
+        border-bottom-left-radius: $global-radius;
+    }
+
+    &.vertical {
+        border-top-right-radius: $global-radius;
+        border-left: 1px solid $medium-gray;
+    }
+
+    .tabs-panel {
+        .tabs-panel-footer {
+            border-top: 1px solid $medium-gray;
+            border-bottom-left-radius: $global-radius;
+            border-bottom-right-radius: $global-radius;
+            background: $whitesmoke-gray;
+            margin-top: $tab-content-padding;
+            margin-left: -$tab-content-padding;
+            margin-right: -$tab-content-padding;
+            margin-bottom: -$tab-content-padding;
+            padding: $tab-content-padding;
+
+            .button {
+                margin-bottom: 0;
+            }
+        }
+
+        &.tabs-panel--is-active {
+            display: block;
+        }
+    }
+}
+
+.vertical-tabs-container {
+    padding-left: rem-calc(15);
+    padding-right: rem-calc(15);
+}
+
+// Support Tabs with transition
+
+.tabs-with-transition {
+    .tabs-content {
+        .tabs-panel {
+            display: block;
+            opacity: 0;
+            @include transition(opacity);
+            height: 0;
+            visibility: hidden;
+            padding: 0;
+
+            &.tabs-panel--is-active {
+                visibility: visible;
+                height: auto;
+                opacity: 1;
+                padding: $global-padding;
+            }
+        }
+    }
+}
+
+//lena's idea
+.min-tabs {
+    border-bottom: 2px solid $dark-gray;
+    margin: rem-calc(8 0 16 0);
+    padding: rem-calc(4 0);
+    line-height: rem-calc(18);
+
+    a {
+        margin-right: rem-calc(10);
+        padding: rem-calc(0 2 4 2);
+        color: $charcoal-gray;
+        text-transform: capitalize;
+        @include bold-font;
+
+        &:hover {
+            color: $primary-color;
+        }
+
+        &.active {
+            color: $primary-color;
+            border-bottom: 2px solid $primary-color;
+            cursor: auto;
+        }
+    }
+}

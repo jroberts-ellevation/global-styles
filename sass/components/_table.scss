@@ -1,0 +1,368 @@
+﻿// Tables
+// -------------------------
+
+$table-thead-bg-color: $light-gray;
+$table-border-color: $light-gray;
+
+table {
+    width: 100%;
+
+    thead {
+        background-color: $table-thead-bg-color;
+
+        th {
+            font-size: rem-calc(14);
+            @include bold-font;
+
+            a {
+                color: $body-font-color;
+
+                &:hover {
+                    color: $body-font-color;
+                }
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            &.table-row-highlighted {
+                background-color: smart-scale($white, 3%);
+            }
+
+            &.table-row-selected {
+                background-color: $light-blue-color;
+            }
+        }
+
+        td {
+            font-size: rem-calc(14);
+
+            &.chunky {
+                padding: rem-calc(16);
+            }
+
+            &.align-top {
+                vertical-align: top;
+            }
+
+            &.align-middle {
+                vertical-align: middle;
+            }
+
+            &.align-bottom {
+                vertical-align: bottom;
+            }
+
+            &.is-current-sort {
+                background-color: smart-scale($white, 1.5%);
+            }
+
+            .table-cell-item-stacked {
+                display: block;
+            }
+        }
+        // Use to re-align all cells to top (defualt is middle)
+        &.align-top {
+            td {
+                vertical-align: top;
+            }
+        }
+    }
+    // Table Column Sizing
+    &.table-fixed {
+        table-layout: fixed;
+    }
+
+    &.table-even-up-2 {
+        tbody {
+            td {
+                width: 50%;
+            }
+        }
+    }
+    // Table Row = borders between rows only
+    &.table-rows {
+        border: 1px solid $table-border-color;
+
+        tbody {
+            td {
+                border-top: 1px solid $table-border-color;
+            }
+        }
+    }
+    // Table Grid = borders between rows and columns
+    &.table-grid {
+        thead {
+            th {
+                border: 1px solid $table-border-color;
+            }
+
+            &.table-grid-darker {
+                th {
+                    border-color: $medium-gray;
+                }
+            }
+        }
+
+        tbody {
+            td {
+                border: 1px solid $table-border-color;
+            }
+
+            &.table-grid-darker {
+                td {
+                    border-color: $medium-gray;
+                }
+            }
+        }
+    }
+    // Table Striped = alternate row coloring (evens)
+    &.table-striped {
+        tbody {
+            tr {
+                // If stripe is set to even, darken the even rows.
+                &:nth-child(even) {
+                    background-color: $table-striped-background;
+                }
+            }
+        }
+    }
+    // Table Hover = row highlighting
+    &.table-hover {
+        tbody {
+            tr {
+                &:not(.table-row-selected) {
+                    &:hover {
+                        background-color: $table-row-hover;
+                    }
+                }
+            }
+        }
+        // Darkens the even striped table rows.
+        &.table-striped {
+            tbody {
+                tr {
+                    &:nth-of-type(even):hover {
+                        background-color: $table-row-stripe-hover;
+                    }
+                }
+            }
+        }
+    }
+    // Table Stack = on small devices stack columns vertically
+    &.table-stack {
+        @include breakpoint(medium down) {
+            @include table-stack;
+        }
+    }
+    // Table Scroll = create horizontally scrollable table
+    &.table-scroll {
+        @include table-scroll;
+    }
+
+    &.table-expandable {
+        tbody {
+            tr {
+                &.table-row-trigger-expanded {
+                    background: $light-blue-color;
+
+                    &:hover {
+                        background: $light-blue-color;
+                    }
+                }
+
+                &.table-row-expanded {
+                    background: $white;
+
+                    &:hover {
+                        background: $white;
+                    }
+                }
+            }
+        }
+    }
+    // If table can be sorted up/down
+    &.table-sortable {
+        th {
+            &.is-sortable {
+                padding-right: rem-calc(20);
+
+                & > .sortable-control {
+                    display: inline-block;
+                    position: relative;
+
+                    &::after, &::before {
+                        @include efa-icon();
+                        content: fa-content($fa-var-sort-up);
+                        position: absolute;
+                        right: rem-calc(-14);
+                        top: rem-calc(4);
+                        opacity: 0.5;
+                        color: $silver-gray;
+                        cursor: pointer;
+                    }
+
+                    &::before {
+                        content: fa-content($fa-var-sort-up);
+                    }
+
+                    &::after {
+                        content: fa-content($fa-var-sort-down);
+                    }
+                }
+
+                &:hover {
+                    & > .sortable-control {
+                        &::after, &::before {
+                            opacity: 1;
+                        }
+                    }
+                }
+
+                &.is-sorting {
+                    & > .sortable-control {
+                        &::after, &::before {
+                            opacity: 1;
+                        }
+
+                        &::before {
+                            color: $body-font-color;
+                        }
+                    }
+
+                    &.is-sorting-desc {
+                        & > .sortable-control {
+                            &::before {
+                                color: $silver-gray;
+                            }
+
+                            &::after {
+                                color: $body-font-color;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    // Drag and Drop Re-ordering
+    &.table-reorderable {
+        thead {
+            th {
+                @include transition(background-color);
+
+                &.is-reorderable {
+
+                    .column-control {
+                        display: flex;
+
+                        .column-control-drag-handle {
+                            display: inline-flex;
+                            width: rem-calc(24);
+                            color: $silver-gray;
+                            font-size: rem-calc(15);
+                            ;
+                            // opacity: 0;
+                            @include transition(opacity);
+                            position: relative;
+
+                            &::before {
+                                content: ':::::';
+                                position: absolute;
+                                transform: rotate(90deg);
+                            }
+                        }
+                    }
+
+
+                    &:hover {
+                        background-color: smart-scale($table-thead-bg-color,3%);
+
+                        &::before {
+                            opacity: 1;
+                            cursor: grab;
+                        }
+                    }
+                }
+            }
+        }
+
+        tbody {
+            td {
+                &.is-reorderable {
+                    padding-left: rem-calc(20);
+                }
+            }
+        }
+    }
+
+    &.table-clean {
+        border: none;
+
+        thead {
+            background-color: transparent;
+            border-width: 0 0 1px 0;
+        }
+
+        tbody {
+            border: none;
+        }
+    }
+    // Table Cell Sizing
+    th, td {
+        &.table-cell-checkbox {
+            width: rem-calc(36);
+            text-align: center;
+        }
+
+        &.table-cell-icon {
+            width: rem-calc(48);
+            text-align: center;
+        }
+
+        &.table-cell-cog {
+            width: rem-calc(60);
+        }
+
+        &.table-cell-cog-small {
+            width: rem-calc(64);
+        }
+    }
+    // Table Form Controls
+    input[type="checkbox"],
+    input[type="radio"],
+    #{text-inputs()},
+    select,
+    .switch,
+    .select2-container,
+    .button,
+    button,
+    p {
+        margin: 0;
+        vertical-align: middle;
+    }
+    // SDC Birdseye Legacy Sort
+    &.legacy-is-sortable {
+        thead {
+            th {
+                .column-sort-wrapper {
+                    opacity: 0;
+                    padding-left: 5px;
+                    @include transition(opacity);
+                }
+
+                &.is-current-sort {
+                    background-color: smart-scale($light-gray, 7%);
+                }
+
+                &.is-current-sort,
+                &.is-sortable:hover {
+                    .column-sort-wrapper {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}

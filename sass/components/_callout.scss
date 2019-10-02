@@ -1,0 +1,173 @@
+﻿// Components > Callout
+// -------------------------
+
+%toast-icon-info {content: fa-content($fa-var-info-circle)};
+%toast-icon-primary {content:fa-content($fa-var-info-circle)};
+%toast-icon-success {content:fa-content($fa-var-check-circle)};
+%toast-icon-warning {content:fa-content($fa-var-exclamation-triangle)};
+%toast-icon-alert {content:fa-content($fa-var-times-circle)};
+%toast-icon-error {content:fa-content($fa-var-times-circle)};
+%toast-icon-secondary {content:fa-content($fa-var-info-circle)};
+
+@mixin set-toast-icon($arg) {
+    @extend %toast-icon-#{$arg};
+}
+
+$callout-paragraph-size: rem-calc(15);
+
+.toast {
+    @include callout-base;
+    border-width:0;
+}
+.toast-close-button {
+    @include close-button;
+}
+
+.callout, .toast {
+    position: relative;
+    padding-left: rem-calc(42);
+
+    &[data-closable] {
+        &:not(.full-width) {
+            padding-right: rem-calc(32);
+        }
+    }
+    // Progress
+    .toast-progress {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: rem-calc(4);
+        background: rgba($black,0.25);
+    }
+    // Callout Icons
+    &::before {
+        @include efa-icon();
+        position: absolute;
+        top: rem-calc(16);
+        left: rem-calc(16);
+        font-size: rem-calc(20);
+        line-height: $callout-paragraph-size * 1.6;
+        content: fa-content($fa-var-info-circle);
+    }
+
+    &.custom-icon {
+        &::before {
+            content: none;
+        }
+
+        .callout-icon {
+            position: absolute;
+            top: rem-calc(16);
+            left: rem-calc(16);
+            font-size: rem-calc(20);
+            line-height: $callout-paragraph-size * 1.6;
+        }
+    }
+    // Callout Colors
+    @each $name, $color in $foundation-palette {
+        &.#{$name}, &.toast-#{$name} {
+            &::before {
+                @include set-toast-icon($name);
+            }
+
+            @if $name != secondary {
+                background-color: scale-color($color, $lightness: 75%);
+                border-color: scale-color($color, $lightness: 50%);
+                color: scale-color($color, $lightness: -25%);
+
+                &::before {
+                    color: scale-color($color, $lightness: -25%);
+                }
+            }
+
+            @if $name == secondary {
+                background-color: $whitesmoke-gray;
+                border-color: $medium-gray;
+                color: $body-font-color;
+
+                &::before {
+                    color: scale-color($medium-gray, $lightness: -50%);
+                }
+            }
+
+
+            &.dark {
+                background: $color;
+                border-color: $color;
+                color: foreground($color, $body-font-color, $white, 75%);
+
+                &::before {
+                    color: foreground($color, $body-font-color, $white, 75%);
+                }
+            }
+        }
+    }
+
+    &.dark-beige {
+        background: $dark-yellow;
+    }
+
+    p, .toast-message, ul {
+        font-size: $callout-paragraph-size;
+        margin-bottom: 0.5em;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    // Callout Sizing
+    &.callout-condensed {
+        padding: rem-calc(8);
+        padding-left: rem-calc(34);
+
+        p {
+            font-size: rem-calc(14);
+        }
+
+        &::before {
+            top: rem-calc(8);
+            left: rem-calc(8);
+            font-size: rem-calc(18);
+            line-height: rem-calc(21);
+        }
+    }
+    // Callout Options
+    &.callout-clean-icon {
+        padding-left: rem-calc(16);
+
+        &::before {
+            display: none;
+        }
+    }
+
+    &.callout-clean-border {
+        border-radius: 0;
+        border-width: 0;
+    }
+
+    &.callout-clean-margin {
+        margin: 0;
+    }
+
+    &.callout-action-sheet-replace {
+        margin:rem-calc(8);
+    }
+
+    &.callout-action-sheet-header {
+        border-bottom-width: 1px;
+    }
+
+
+    // Scrollable Section within a callout / shame
+    .callout-scrollable-section {
+        max-height: rem-calc(120);
+        font-size: rem-calc(14);
+        overflow-y: auto;
+        background: $whitesmoke-gray;
+        padding: rem-calc(8);
+        color: $body-font-color;
+        border: 1px solid $medium-gray;
+        border-radius: $global-radius;
+    }
+}

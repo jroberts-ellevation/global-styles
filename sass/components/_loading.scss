@@ -1,0 +1,124 @@
+// Components > Loading
+// -------------------------
+
+ell-loading-message {
+    display: none !important;
+    min-width: 100%;
+}
+
+.is-loading {  
+    overflow: hidden;
+    max-height: 100%;     
+ 
+    // set overlay to fill parent div and disable scrolling while loading
+    // and move z-index above any component level 'is-processing' loaders
+    &::before {
+        background: $white;
+        content: "";
+        height: 100%;
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+        z-index: 3;
+    }
+     
+    ell-loading-message {
+        display: block !important;
+
+        // position progress bar and set z-index to one above modal overlay
+        .is-loading-message {
+            display: block;
+            margin-top: 4.5rem;
+            top: 0;
+            z-index: 4;
+        }
+    }
+}
+
+.is-loading-message {
+    display: none;
+    position: relative;
+    width: 75%;
+    left: 12.5%;
+    top: 50%;
+    background: $white;
+    border: 1px solid $medium-gray;
+    min-height:rem-calc(96);
+    padding:rem-calc(24);
+    border-radius:$global-radius;
+
+    @include breakpoint(medium up) {
+        width: 50%;
+        left: 25%;
+        padding-left:rem-calc(32);
+        padding-right:rem-calc(32);
+    }
+
+     @include breakpoint(large up) {
+        width: 33.33%;
+        left: 33.33%;
+        padding-left:rem-calc(48);
+        padding-right:rem-calc(48);
+    }
+
+    h6 {
+        text-align:center;
+        text-transform:uppercase;
+        font-size:rem-calc(14);
+        line-height:rem-calc(16);;
+        margin:rem-calc(0 0 16);
+    }
+
+    .progress-message-bar {
+        border: 1px solid $medium-gray;
+        display: block;
+        height: rem-calc(16);
+        border-radius:$global-radius;
+        position: relative;
+
+        .progress-message-bar-left {
+            bottom: 0;
+            display: block;
+            position: absolute;
+            top: 0;
+            transition: width 0.2s cubic-bezier(0.4,0,0.2,1);
+            width: 0%;
+            left: 0;
+            width: 0%;
+            z-index: 1;
+            animation-duration: 2s;
+            animation-name: progress-indicator-primary;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            background-color: $primary-color;
+        }
+
+        .progress-message-bar-back {
+            bottom: 0;
+            display: block;
+            position: absolute;
+            top: 0;
+            transition: width 0.2s cubic-bezier(0.4,0,0.2,1);
+            background-image: linear-gradient(to right,rgba($white,0.75),rgba($white,0.75)),linear-gradient(to right,$primary-color,$primary-color);
+            left: 0;
+            width: 100%;
+            z-index: 0;
+        }
+
+        .progress-message-bar-right {
+            bottom: 0;
+            display: block;
+            position: absolute;
+            top: 0;
+            transition: width 0.2s cubic-bezier(0.4,0,0.2,1);
+            right: 0;
+            width: 0%;
+            animation-duration: 2s;
+            animation-name: progress-indicator-secondary;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            background-color: $primary-color;
+            background-image: none;
+        }
+    }
+}

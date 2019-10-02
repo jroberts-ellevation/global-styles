@@ -1,0 +1,40 @@
+﻿// Components > Breadcrumb
+// -------------------------
+
+.breadcrumbs {
+    li {
+        &:not(:last-child)::after {
+            content: "\203A";
+            font-size:rem-calc(16);
+            line-height: $breadcrumbs-item-font-size;
+            top:0;
+        }
+        &.current {
+            a {
+                color:$body-font-color;
+                cursor:pointer;
+            }
+        }
+    }
+    &.white {
+        li {
+            color:$white;
+            text-shadow:1px 1px $black;
+            a {
+                @include transition(opacity);
+                color:$white;
+                opacity:0.7;
+                &:hover {
+                    opacity:1;
+                }
+            }
+            span {
+                opacity:1;
+            }
+            &::after {
+                color:$white;
+                opacity:0.7;
+            }
+        }
+    }
+}

@@ -1,0 +1,44 @@
+﻿// Components > EllCard
+// -------------------------
+
+.ell-card {
+    font-size: rem-calc(14);
+
+    .title {
+        color: $body-font-color;
+        @include bold-font;
+    }
+
+    .sub-label {
+        @include ellipsis;
+        color: $silver-gray;
+    }
+
+    .decoration {
+        align-self: center;
+    }
+}
+
+//remove padding from grid to avoid double padding from li > a
+.detailed-menu-list > li > a > ell-card > .row > .columns:first-child {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.card {
+    background: $white;
+    color: $body-font-color;
+    margin: rem-calc(2 0);
+    border: 1px solid $whitesmokier-gray;
+    border-radius: $global-radius;
+    @include box-shadow(0, 4px, 10px, $black, 0.4);
+    @include transition(all);
+
+    &:hover {
+        @include box-shadow(0, 8px, 20px, $black, 0.4);
+
+        .card-title {
+            text-decoration: underline;
+        }
+    }
+}

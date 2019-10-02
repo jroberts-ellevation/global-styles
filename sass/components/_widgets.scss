@@ -1,0 +1,245 @@
+﻿// Components > Widget
+// -------------------------
+
+@mixin shd-title {
+    @include bold-font;
+    @include not-a-link;
+}
+
+@mixin shd-description {
+    color: $silver-gray;
+    margin-bottom: rem-calc(15);
+    word-wrap: break-word;
+}
+
+.widget-creator {
+
+    .widget-controls-container {
+        .widget-type-selector {
+            position: relative;
+            margin-bottom: $global-margin;
+
+            .widget-type {
+                cursor: pointer;
+                border: 1px solid $medium-gray;
+                border-radius: $global-radius;
+                padding: rem-calc(4) rem-calc(8);
+                background-color: $white;
+            }
+
+            .widget-type-dropdown {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: white;
+                border: 1px solid $medium-gray;
+                border-radius: $global-radius;
+
+                .widget-type-option {
+                    cursor: pointer;
+                    padding: rem-calc(4) rem-calc(8);
+
+                    &:not(:last-child) {
+                        border-bottom: 1px solid $secondary-color;
+                    }
+
+                    &:hover {
+                        background-color: $secondary-color;
+                    }
+                }
+            }
+        }
+
+        hr {
+            margin: rem-calc(16 0);
+        }
+    }
+
+    .widget-designer {
+        .widget-option {
+            font-size: rem-calc(14);
+
+            .widget-option-title-container {
+                display: flex;
+                justify-content: space-between;
+
+                .widget-option-title {
+                    @include bold-font;
+
+                    .fa.fa-chain {
+                        color: $silver-gray;
+                    }
+                }
+
+                .widget-option-annotation {
+                    color: $silver-gray;
+                }
+            }
+
+            .widget-option-description {
+                color: $silver-gray;
+            }
+        }
+
+        .widget-add-description {
+            margin-top: rem-calc(6);
+            margin-bottom: rem-calc(8);
+            color: $primary-color;
+
+            .fa {
+                font-size: rem-calc(12);
+            }
+        }
+
+        textarea {
+            resize: none;
+        }
+    }
+
+    .widget-dashboard-selector {
+        .widget-option {
+            margin-bottom: rem-calc(16);
+        }
+    }
+}
+
+.widget-preview-container {
+    background-color: $secondary-color;
+    padding: rem-calc(15) rem-calc(25);
+    margin-top: rem-calc(-16);
+    margin-bottom: rem-calc(-16);
+}
+
+.widget-preview {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+
+    .widget-preview-title {
+        @include bold-font;
+    }
+
+    .widget-preview-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: rem-calc(15);
+    }
+}
+
+.widget-preview-element {
+    background-color: white;
+    border-radius: $global-radius;
+    border: 1px solid $gray;
+    padding: rem-calc(15);
+    padding-bottom: rem-calc(20);
+    max-height: rem-calc(335);
+
+    .widget-preview-element-title {
+        @include bold-font;
+        @include ellipsis;
+
+        .placeholder {
+            color: $medium-gray;
+            font-family: $normal-font-family;
+            font-size: rem-calc(16);
+        }
+    }
+
+    .widget-preview-element-description {
+        @include shd-description;
+
+        .stat {
+            line-height: unset;
+        }
+    }
+
+    .widget-preview-element-container {
+        &.is-loading-data {
+            display: flex;
+            justify-content: center;
+
+            .fa-spinner {
+                align-self: center;
+                font-size: rem-calc(64);
+                color: smart-scale($primary-color, 75%);
+            }
+        }
+    }
+
+    &.is--headline {
+        .widget-preview-element-container {
+            text-align: center;
+        }
+    }
+
+    &.is--table {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: rem-calc(300);
+
+        .widget-preview-element-container {
+            flex: 1;
+
+            .supergrid-outer-wrapper {
+                height: 100%;
+                padding: 0;
+
+                .supergrid-outer-container {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+
+.widget-placeholder {
+    svg {
+        &.is--headline {
+            width: 100%;
+            max-width: rem-calc(180);
+        }
+
+        &.is--chart {
+            max-height: rem-calc(200);
+        }
+
+        &.is--table {
+            max-height: rem-calc(200);
+        }
+
+        rect {
+            fill: $gray;
+            animation: pulse 3s infinite;
+
+            @keyframes pulse {
+                50% {
+                    opacity: 0.25;
+                }
+            }
+        }
+
+        line {
+            stroke: $gray;
+        }
+    }
+
+    .fas {
+        font-size: 100px;
+        color: $light-gray;
+    }
+}
+
+.chart-widget {
+    .chart-title {
+        display: none;
+    }
+}

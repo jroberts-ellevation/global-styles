@@ -1,0 +1,202 @@
+﻿// Button 
+// -------------------------
+
+@mixin subtle-button($subtle-color:$body-font-color,$active-color-bg:$secondary-color,$active-color-border:$medium-gray) {
+    color:$subtle-color;
+    background-color:transparent;
+    border-color:transparent;
+    @include transition(all);
+    &.dropdown {
+        &::after {
+            border-top-color:$subtle-color;
+        }
+    }
+    &:hover {
+        background-color:$active-color-bg;
+        border-color:$active-color-border;
+    }
+
+}
+
+.button {
+    border-width: 1px;
+    border-style: solid;
+    // Button Sizes
+    &.tiny {
+        font-size: rem-calc(12);
+        line-height: rem-calc(14);
+        padding: rem-calc(4 8);
+
+        .fa {
+            // Font Awesome Line Height Hack. Yeckk!!! https://github.com/FortAwesome/Font-Awesome/issues/5128
+            font-size: rem-calc(14);
+            line-height: rem-calc(13);
+            position: relative;
+            top: 1px;
+        }
+    }
+
+    &.small {
+        font-size: rem-calc(14);
+        padding: rem-calc(8 12);
+
+        .fa {
+            // Font Awesome Line Height Hack. Yeckk!!! https://github.com/FortAwesome/Font-Awesome/issues/5128
+            line-height: rem-calc(13);
+        }
+    }
+    // Used to create smaller buttons - specifically useful for icon buttons. Use sparingly.
+    &.shrink-h {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+    }
+
+    &.collapse-h {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    & > .fa {
+        &:not(:last-child) {
+            &:not(:first-child) {
+                margin-right: rem-calc(4);
+            }
+        }
+    }
+
+    &.dropdown {
+        &::after {
+            margin-left: 0.4em;
+            border: inset 0.3em;
+            border-color: $white transparent transparent;
+            border-top-style: solid;
+            border-bottom-width: 0;
+        }
+
+        &.small {
+            &::after {
+                top: rem-calc(5);
+            }
+        }
+    }
+
+    @each $name, $color in $foundation-palette {
+        &.#{$name} {
+            @if $name != secondary {
+                border-color: $color;
+
+                &.dropdown {
+                    &::after {
+                        border-top-color: $white;
+                    }
+                }
+            }
+
+            @if $name == secondary {
+                border-color: $medium-gray;
+                color: $body-font-color;
+
+                &:hover {
+                    color: $body-font-color;
+                }
+
+                &.dropdown {
+                    &::after {
+                        border-top-color: $body-font-color;
+                    }
+                }
+            }
+            // the .active class is applied when a menu-popup is open associated with button
+            &.active {
+                background: scale-color($color, $lightness: -15%);
+            }
+        }
+    }
+    // Creates an button with no bg or border until hover -- used for subtle interactions
+    &.subtle {
+        @include subtle-button;
+    }
+
+    &.hollow {
+        @include transition(all);
+
+        &.secondary {
+            border-color: $body-font-color;
+            color: $body-font-color;
+
+            &:hover {
+                border-color: smart-scale($body-font-color,7%);
+                color: smart-scale($body-font-color,7%);
+            }
+        }
+
+        &.inverted {
+            border-color: $white;
+            color: $white;
+
+            &:hover {
+                border-color: smart-scale($white, 20%);
+                color: smart-scale($white, 20%);
+            }
+        }
+    }
+
+    &.saving-state,
+    &.button-loading-state,
+    &.loading-state {
+        padding-left: rem-calc(28);
+        pointer-events: none;
+
+        &:before {
+            @include efa-icon();
+            float: left;
+            margin-left: rem-calc(-17);
+            content: fa-content($fa-var-spinner);
+            animation: fa-spin .75s infinite steps(8);
+        }
+    }
+
+    &.link-button {
+        color: $primary-color;
+        background: transparent;
+        border-color: transparent;
+        margin-right: 0;
+    }
+    // Draggable Buttons
+    &.not-draggable {
+        text-align: left;
+        padding-left: rem-calc(24);
+    }
+
+    &.draggable, {
+        text-align: left;
+        padding-left: rem-calc(24);
+
+        @include grabby-hands(7px,4px);
+
+        &.disabled {
+            &::before {
+                content: none;
+            }
+        }
+    }
+
+    &.button-draggable {
+        text-align: left;
+        display: flex;
+
+        .button-draggable-handle {
+            flex: 0 0 rem-calc(16);
+			cursor: move;
+            @include grabby-hands(0,-5px);
+        }
+
+        .button-draggable-label {
+            flex: 1;
+        }
+
+        .button-draggable-action {
+            flex: 0;
+        }
+    }
+}

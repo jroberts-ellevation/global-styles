@@ -1,0 +1,115 @@
+﻿// Components > Label
+// -------------------------
+
+$medium-label-sizing: rem-calc(6);
+$medium-label-font-size: rem-calc(14);
+$large-label-sizing: rem-calc(8);
+$large-label-font-size: rem-calc(16);
+
+.label {
+    border-width: 1px;
+    border-style: solid;
+    background-color:$white;
+    border-color: smart-scale($primary-color, 10%);
+    color: $primary-color;
+    border-color: $primary-color;
+
+    // Colors
+
+    &.split {
+        padding:0;
+        display:inline-flex;
+        .split-main {
+            padding:$label-padding;
+            padding-right:0;
+            display:inline-flex;
+        }
+        .split-accent {
+            border-left-width:1px;
+            border-left-style:solid;
+            padding:$label-padding;
+            margin-left:rem-calc(4);
+            display:inline-flex;
+            background-color: $primary-color;
+            border-color: smart-scale($primary-color, 10%);
+            color: foreground($primary-color);
+        }
+    }
+
+    @each $name, $color in $foundation-palette {
+        &.#{$name} {
+            background-color:$white;
+            @if $name != secondary {
+                border-color: smart-scale($color, 10%);
+                color: $color;
+            }
+            @if $name == secondary {
+                border-color:$medium-gray;
+                color:$body-font-color;
+            }
+            &.split {
+                .split-accent {
+                    background-color: $color;
+                    border-color: smart-scale($color, 10%);
+                    color: $color;
+                    @if $name != secondary {
+                        color: foreground($color);
+                    }
+                    @if $name == secondary {
+                        color:$body-font-color;
+                    }
+                }
+            }
+            &.dark {
+                background-color:$color;
+                color: foreground($color);
+            }
+        }
+    }
+
+
+    // Chicklets Labels
+    &.chicklet {
+        min-width:rem-calc(18);
+        height:rem-calc(12);
+        border-radius:rem-calc(6);
+    }
+
+    
+
+    // Sizing
+    &.medium {
+        font-size:$medium-label-font-size;
+        &:not(.split) {
+            padding:$medium-label-sizing ($medium-label-sizing*1.5);
+        }
+        .split-accent {
+            padding:$medium-label-sizing;
+            margin-left:$medium-label-sizing;
+        }
+    }
+    &.large {
+        font-size:$large-label-font-size;
+        &:not(.split) {
+            padding:$large-label-sizing ($large-label-sizing*1.5);
+        }
+        .split-accent {
+            padding:$large-label-sizing;
+            margin-left:$large-label-sizing;
+        }
+    }
+
+
+
+
+    // TODO: Refactor || Used for chaining multiple labels together (?)
+    &:not(:last-child) {
+        margin-right:rem-calc(4);
+        &.medium {
+            margin-right:$medium-label-sizing*2;
+        }
+        &.large {
+            margin-right:$large-label-sizing*2;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+﻿// Components > Tooltip
+// -------------------------
+
+.tooltip {
+    z-index: 9999;
+}
+
+.ell-tooltip {
+    $tooltip-color: rgba(34, 34, 34, 0.9);
+
+    position: absolute;
+    background-color: $tooltip-color;
+    color: $white;
+    padding: rem-calc(8);
+    max-width: rem-calc(300);
+    border-radius: rem-calc(4);
+    z-index: 9999;
+    font-size: rem-calc(14);
+
+    @include tail(10px, bottom, $tooltip-color, $tooltip-color);
+
+    .small {
+        max-width: rem-calc(200);
+    }
+}

@@ -1,0 +1,140 @@
+﻿// Components > Badge
+// -------------------------
+
+@mixin fixed-badge($badge-font-size,$badge-size) {
+    font-size: $badge-font-size;
+    line-height: ($badge-size - rem-calc(4));
+    min-width: $badge-size;
+    min-height: $badge-size;
+    display: inline-block;
+
+    &:not(.badge-radius) {
+        border-radius: $badge-size / 2;
+    }
+
+    & > .fa {
+        font-size: $badge-font-size*0.75;
+    }
+}
+
+@mixin fixed-badge-match-header($badge-size) {
+    &.float-left {
+        margin-right: ($badge-size/2);
+
+        & + * {
+            line-height: $badge-size;
+        }
+    }
+}
+
+.badge {
+    &:not(.subtle) {
+        text-shadow: 0 1px 1px $black;
+    }
+
+    @include fixed-badge(rem-calc(10),rem-calc(16));
+    @include fixed-badge-match-header(rem-calc(16));
+
+    &.secondary {
+        background: $medium-gray;
+        text-shadow: 0 1px 1px $white;
+    }
+    // Instructional Strategy Badge Colors
+    @each $practice-name, $practice-color in $strategies-palette {
+        &.#{$practice-name} {
+            background: $practice-color;
+        }
+    }
+    // Border Style Variations
+    &.badge-radius {
+        border-radius: $global-radius;
+    }
+    // Fixed Sizings
+    &.badge-20 {
+        @include fixed-badge(rem-calc(11),rem-calc(20));
+        @include fixed-badge-match-header(rem-calc(20));
+    }
+
+    &.badge-24 {
+        @include fixed-badge(rem-calc(12),rem-calc(24));
+        @include fixed-badge-match-header(rem-calc(24));
+    }
+
+    &.badge-32 {
+        @include fixed-badge(rem-calc(16),rem-calc(32));
+        @include fixed-badge-match-header(rem-calc(32));
+    }
+
+    &.badge-40 {
+        @include fixed-badge(rem-calc(20),rem-calc(40));
+        @include fixed-badge-match-header(rem-calc(40));
+    }
+
+    &.badge-48 {
+        @include fixed-badge(rem-calc(24),rem-calc(48));
+        @include fixed-badge-match-header(rem-calc(48));
+    }
+    &.badge-64 {
+        @include fixed-badge(rem-calc(32),rem-calc(64));
+        @include fixed-badge-match-header(rem-calc(64));
+    }
+    &.badge-96 {
+        @include fixed-badge(rem-calc(64),rem-calc(96));
+        @include fixed-badge-match-header(rem-calc(96));
+    }
+    // Subtle Versions
+    &.subtle {
+        border-width: 1px;
+        border-style: solid;
+        background: transparent;
+        padding-top: 1px;
+        padding-bottom: 1px;
+
+        @each $name, $color in $foundation-palette {
+            &.#{$name} {
+                @if $name != secondary {
+                    border-color: $color;
+                    color: $color;
+                }
+
+                @if $name == secondary {
+                    border-color: $medium-gray;
+                    color: $body-font-color;
+                }
+            }
+        }
+    }
+}
+
+// Badge as Pseudo Element (used in menus)
+
+.has-badge {
+    position: relative;
+    & > a {
+        &::after {
+            content: attr(data-notification-count);
+            position: absolute;
+            top: rem-calc(8);
+            left: 100%;
+            margin-left: rem-calc(-20);
+            z-index: 1;
+            @include fixed-badge(rem-calc(12),rem-calc(16));
+            background-color: $success-color;
+            color: $white;
+            text-shadow: 0 1px 1px $black;
+            padding: rem-calc(2 4);
+            text-align: center;
+            border-radius:$global-radius;
+        }
+    }
+
+    @each $name, $color in $foundation-palette {
+        &.has-badge-#{$name} {
+            & > a {
+                &::after {
+                    background-color: $color;
+                }
+            }
+        }
+    }
+}

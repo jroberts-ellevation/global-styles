@@ -1,0 +1,103 @@
+﻿// Grid > Adjustment
+// -------------------------  
+
+@include breakpoint(medium up) {
+    .medium-unstack {
+        & > .column,
+        & > .columns {
+            &.shrink {
+                flex: 0 0 auto;
+                max-width: 100%;
+            }
+        }
+    }
+}
+    
+// Column Spacing Adjustments
+
+.column, .columns {
+    &.collapse {
+        padding-left:0;
+        padding-right:0;
+    }
+    &.collapse-left {
+        padding-left:0;
+    }
+    &.collapse-right {
+        padding-right:0;
+    }
+}
+
+// Grid Block <> Frame Shit
+
+.grid-frame {
+    display: flex;
+    height: 100vh;
+    // position: relative;
+    overflow: hidden;
+    backface-visibility: hidden;
+    flex: 1 1 auto;
+    flex-flow: row wrap;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    order: 0;
+
+    &.vertical {
+        flex-flow: column nowrap;
+        align-items: stretch;
+    }
+}
+
+.grid-block {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    backface-visibility: hidden;
+    flex: 1 1 auto;
+    flex-flow: row wrap;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    order: 0;
+    height: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    &.vertical {
+        flex-flow: column nowrap;
+        align-items: stretch;
+    }
+    &.shrink {
+        flex: 0 0 auto;
+    }
+}
+
+.grid-content {
+    display: block;
+    padding: rem-calc(0 $global-padding);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    flex: 1 1 auto;
+    &.shrink {
+        flex: 0 0 auto;
+    }
+    &.collapse {
+        padding-left:0;
+        padding-right:0;
+    }
+}
+
+/// Row Adjustments for Wider Pages
+
+.row {
+	&.xlarge {
+		max-width: rem-calc(1600);
+	}
+
+	&.large {
+		max-width: rem-calc(1400);
+	}
+}
+

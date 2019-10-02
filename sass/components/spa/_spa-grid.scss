@@ -1,0 +1,8 @@
+﻿// Components > SPA (Single Page App) > Grid
+// -------------------------
+
+.grid-frame {
+    &.spa-grid-frame {
+        height: calc(100vh - #{$masthead-height});
+    }
+}

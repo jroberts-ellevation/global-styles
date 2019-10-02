@@ -1,0 +1,105 @@
+﻿// Components > Birdseyes > Hero Tiles
+// -------------------------  
+
+.hero-tile {
+    color: $body-font-color;
+    background: $white;
+    text-align: center;
+    padding: rem-calc(12 16);
+    position: relative;
+    display: block;
+    border-top: 2px solid $body-font-color;
+    @include transition(opacity, 300ms, ease-in);
+    &:hover {
+        color: $body-font-color;
+    }
+
+    &:not(.active) {
+        opacity: 0.5;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    &.active {
+        opacity: 1;
+        cursor: default;
+
+        &:after {
+            position: absolute;
+            display: block;
+            border: 12px solid transparent;
+            border-top-color: $body-font-color;
+            margin-left: -12px;
+            left: 50%;
+            content: "";
+            top: -2px;
+        }
+    }
+
+    .figure {
+        font-size: rem-calc(40);
+        line-height: 1em;
+        margin-top: rem-calc(8);
+        display: block;
+    }
+    .legend {
+        font-size: rem-calc(11);
+        text-transform: uppercase;
+        display: inline-block;
+        position: relative;
+
+        &.has-tip {
+            @include normal-font;
+        }
+        & > .has-tip {
+            position: absolute;
+            right: rem-calc(-18);
+            top: rem-calc(-1);
+            font-size: rem-calc(16);
+            line-height: 1em;
+            height: rem-calc(18);
+        }
+    }
+}
+
+.hero-tiles {
+    .hero-number {
+        color: $body-font-color;
+        background: $white;
+        text-align: center;
+        padding: rem-calc(10);
+        margin-bottom: -1rem;
+        position: relative;
+        display: block;
+
+        .figure {
+            font-size: rem-calc(40);
+            line-height: 1em;
+            margin: rem-calc(5 0 0);
+            display: block;
+        }
+
+        .legend {
+            font-size: rem-calc(10);
+            text-transform: uppercase;
+            margin: 0;
+            display: inline-block;
+            position: relative;
+
+            &.has-tip {
+                @include normal-font;
+            }
+
+            & > .has-tip {
+                position: absolute;
+                right: rem-calc(-18);
+                top: rem-calc(-1);
+                font-size: rem-calc(16);
+                line-height: rem-calc(16);
+                height: rem-calc(18);
+            }
+        }
+    }
+}
