@@ -13,4 +13,4 @@ Usage:
 `npm i @ellevation/global-styles`
 
 In your project's root sass file:
-`@import '@ellevation/global-styles/sass/Site.scss'`
+`@import '@ellevation/global-styles/sass/global-styles.scss'`
