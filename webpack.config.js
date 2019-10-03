@@ -2,7 +2,7 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-	entry: path.resolve(__dirname, './src/Site.scss'),
+	entry: path.resolve(__dirname, './sass/Site.scss'),
 	output: {
 		filename: 'Site.css'
 	},
